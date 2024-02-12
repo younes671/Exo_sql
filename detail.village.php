@@ -14,27 +14,25 @@ if($monPDO){
     INNER JOIN specialite s ON s.id_specialite = p.id_specialite
     INNER JOIN lieu l ON l.id_lieu = p.id_lieu
     WHERE l.id_lieu = :id
-    ORDER BY l.id_lieu
+    ORDER BY "nom" DESC
     ';
     $req3 = 'SELECT b.nom_bataille AS "nom_bataille", DATE_FORMAT(b.date_bataille, "%d/%m/%Y") AS "date_bataille", l.nom_lieu
     FROM bataille b
     INNER JOIN lieu l ON l.id_lieu = b.id_lieu
     WHERE l.id_lieu = :id
-    ORDER BY l.id_lieu
+    ORDER BY YEAR(b.date_bataille) DESC 
     ';
-    $stmt1 =$monPDO->prepare($req1);
     $id = $_GET["id_lieu"];
+    $stmt1 =$monPDO->prepare($req1);
     $stmt1->execute(["id"=>$id]);
     $lieux = $stmt1->fetch();
     echo"<h1>".$lieux['nom']."</h1>";
 
     $stmt2 =$monPDO->prepare($req2);
-    $id = $_GET["id_lieu"];
     $stmt2->execute(["id"=>$id]);
     $personnages = $stmt2->fetchAll();
 
     $stmt3 =$monPDO->prepare($req3);
-    $id = $_GET["id_lieu"];
     $stmt3->execute(["id"=>$id]);
     $batailles = $stmt3->fetchAll();
 ?>   <h2>Habitants</h2>
@@ -54,7 +52,8 @@ foreach($personnages as $personnage){
       </tr>
 <?php
      } 
-?> 
+?>  </tbody>
+</table>
 
   <table class="table table-striped ">
   <h2>Batailles</h2>
