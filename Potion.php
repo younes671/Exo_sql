@@ -5,7 +5,7 @@ require_once "MonPDO.php";
 
 
 if($monPDO){
-    $req = 'SELECT p.id_potion AS "Numéro", p.nom_potion AS "Nom potion", SUM(c.qte * i.cout_ingredient) AS "Cout potion"
+    $req = 'SELECT p.id_potion AS "Numéro", p.nom_potion AS "Nom_potion", SUM(c.qte * i.cout_ingredient) AS "Cout potion"
     FROM potion p
     INNER JOIN composer c ON c.id_potion = p.id_potion
     INNER JOIN ingredient i ON i.id_ingredient = c.id_ingredient
@@ -28,7 +28,7 @@ if($monPDO){
          ?>
           <tr>
           <td><?=$potion['Numéro']?></td>
-          <td><?=$potion['Nom potion']?></td>
+          <td><a href="detail.potion.php?Numéro=<?=$potion['Numéro']?>&Nom_potion=<?=$potion['Nom_potion']?>" class="badge badge-light text-dark text-decoration-none" ><?=$potion['Nom_potion']?></a></td>
           <td><?=$potion['Cout potion']?></td>
           </tr>
       <?php

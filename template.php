@@ -25,6 +25,12 @@
                 <li class="nav-item">
                 <a class="nav-link" href="potion.php">Potions</a>
                 </li>
+                <li class="nav-item">
+                <a class="nav-link" href="village.php">Villages</a>
+                </li>
+                <li class="nav-item">
+                <a class="nav-link" href="bataille.php">Batailles</a>
+                </li>
             </ul>
             </div>
         </div>
