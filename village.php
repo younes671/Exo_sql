@@ -5,7 +5,7 @@ require_once "MonPDO.php";
 
 
 if($monPDO){
-    $req = 'SELECT l.nom_lieu AS "nom", COUNT(p.id_personnage) AS nombre_personnage
+    $req = 'SELECT l.id_lieu AS "id_lieu", l.nom_lieu AS "nom", COUNT(p.id_personnage) AS nombre_personnage
     FROM lieu l
     INNER JOIN personnage p ON l.id_lieu = p.id_lieu
     AND p.id_lieu = l.id_lieu
@@ -27,7 +27,7 @@ if($monPDO){
     foreach($villages as $village){
          ?>
           <tr>
-          <td><?=$village['nom']?></td>
+          <td><a href="detail.village.php?id_lieu=<?=$village['id_lieu']?>&nom=<?=$village['nom']?>" class="badge badge-light text-dark text-decoration-none" ><?=$village['nom']?></a></td>
           <td><?=$village['nombre_personnage']?></td>
           </tr>
       <?php
